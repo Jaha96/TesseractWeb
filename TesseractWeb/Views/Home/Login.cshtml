@@ -13,8 +13,9 @@
         <div class="row">
 
             <div class="form-group col-lg-offset-6">
-                <label style="color:red">@ViewBag.Message</label>
-                <label style="color:red">@ViewBag.ErrorMessage</label>
+                @if (ViewBag.ErrorMessage != null && ViewBag.ErrorMessage != " ")
+                {
+                    <label class="alert alert-danger col-lg-offset-6">@ViewBag.ErrorMessage</label>}
             </div>
             <h3 class="form-group col-lg-offset-6">Хэрэглэгч нэвтрэх</h3>
             <div class="form-group col-lg-offset-6">

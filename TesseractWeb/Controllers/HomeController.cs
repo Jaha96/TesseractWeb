@@ -5,17 +5,43 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Tesseract;
+using TesseractWeb.Models;
+using TesseractWeb.DB;
 
 namespace TesseractWeb.Controllers
 {
     public class HomeController : Controller
     {
+        Connect cn = new Connect();
         public ActionResult Login()
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Login(UserModel UM)
+        {
+            string ret = cn.UserConnect(UM.Email, UM.Password);
+            if (ret != "1") {
+                ViewBag.ErrorMessage = "Нууц үг эсвэл нэвтрэх нэр буруу байна!";
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
+        }
         public ActionResult Register()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(UserModel UM) // Calling on http post (on Submit)
+        {
+            string ret= cn.UserAdd(UM);
+            if (ret == "1") {
+                ViewBag.Message = "Хэрэглэгч амжилттай бүртгэгдлээ";
+            }
+            else {
+                ViewBag.ErrorMessage = "Хэрэглэгчийн бүртгэл амжилтгүй боллоо";
+            }
+            
             return View();
         }
         public ActionResult Index()
