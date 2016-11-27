@@ -1,4 +1,12 @@
 ﻿@{
+    if (Request.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
     ViewBag.Title = "Нүүр";
 }
 
@@ -55,23 +63,35 @@
     <div class="row">
 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-        <div class="col-lg-4">
-            <img class="img-circle" src="~/images/image.png" width="140" height="140" alt="Generic placeholder image">
+        <div class="col-lg-3">
+            <img class="img-circle center-block" src="~/images/image.png" width="140" height="140" alt="Generic placeholder image">
             <h3>Алхам 1. Зураг оруулах</h3>
             <label class="btn btn-block btn-primary" style="font-size:18px">
                 <input type="file" name="postedFile" onchange="readURL(this)" style="display:none;" accept="image/*" />
                 <span id="labelpost">Оруулах&hellip;</span>
             </label>
         </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="img-circle" src="~/images/language1.png" width="140" height="140" alt="Generic placeholder image">
-            <h3>Алхам 2. Гаралтын хэл сонгох</h3>
-            <p>
+        <div class="col-lg-6">
+            <img class="img-circle center-block" src="~/images/language1.png" width="140" height="140" alt="Generic placeholder image">
+            <h3 class="text-center">Алхам 2. Гаралтын хэл/формат сонгох</h3>
+            <p class="col-md-6">
                 @Html.DropDownList("language", new SelectList(ViewBag.LangList, "Value", "Text"), new { @class = "form-control", id = "language", name = "language" })
             </p>
+            <p class="col-lg-6">
+                @Html.DropDownList("format", new SelectList(
+                  new List<Object>{
+                       new { value = "1" , text = "Microsoft Word (docx)"  },
+                       new { value = "2" , text = "Adobe PDF"  },
+                       new { value = "3" , text = "Text Plain (txt)"  }
+                    },
+                  "value",
+                  "text"), new { @class = "form-control", id = "format", name = "format" })
+            </p>
+
         </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="img-circle" src="~/images/conversion.png" width="140" height="140" alt="Generic placeholder image">
+
+        <div class="col-lg-3">
+            <img class="img-circle center-block" src="~/images/conversion.png" width="140" height="140" alt="Generic placeholder image">
             <h3>Алхам 3. Хөрвүүлэх</h3>
             <p><input type="submit" disabled="disabled" id="submit" style="font-size:18px" class="btn btn-block btn-primary" value="Хөрвүүлэх" /></p>
         </div><!-- /.col-lg-4 -->

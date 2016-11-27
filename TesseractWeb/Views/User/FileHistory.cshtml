@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "FileHistory";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<hr class="featurette-divider">
+<div class="col-sm-11">
+    <div class="panel panel-default col-lg-offset-1">
+        <div class="panel-heading"><h2>Статистикүүд</h2></div>
+        <div class="panel-body">
+            <table class="table table-condensed">
+                <tr>
+                    <td>Нийт ачаалсан зургын тоо</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Нийт илрүүлэлт хийгдсэн файлын тоо</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Системд нэвтэрсэн тоо</td>
+                    <td>0</td>
+                </tr>
+             </table>
+        </div>
+        <div class="panel-footer"><a href="#" class="btn btn-info" role="button">Илрүүлэлт хийх</a></div>
+    </div>
+    <div class="panel panel-default col-lg-offset-1">
+        <div class="panel-heading"><h2>Файлын түүх</h2></div>
+        <div class="panel-body">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Гаралтын файл</th>
+                        <th>Эх зураг</th>
+                        <th>Огноо</th>
+                        <th>Устгах</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(int i=0;i<10;i++)
+                    { 
+                    <tr>
+                        <td><a href="#">John @i</a></td>
+                        <td><a href="#">Doe @i</a></td>
+                        <td>2016.11.09</td>
+                        <td><a href="#"><span class="glyphicon glyphicon-trash"></span></a> </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    </div>
