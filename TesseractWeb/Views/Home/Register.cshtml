@@ -1,0 +1,45 @@
+﻿@model TesseractWeb.Models.UserModel
+@{
+    ViewBag.Title = "Бүртгүүлэх";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr class="featurette-divider">
+@using (Html.BeginForm())
+{
+    
+    <div class="col-sm-8">
+
+        <div class="row">
+            <h3 class="form-group col-lg-offset-6">Хэрэглэгч бүртгүүлэх</h3>
+            <div class="form-group col-lg-offset-6">
+                @if(ViewBag.Message!=null&&ViewBag.Message!=" ") { 
+                <label class="alert alert-danger col-lg-offset-6">@ViewBag.Message</label>
+                <label class="alert alert-danger col-lg-offset-6">@ViewBag.ErrorMessage</label>}
+            </div>
+            <div class="form-group col-lg-offset-6">
+                <label for="CompanyName">Хэрэглэгчийн Нэр</label>
+                @Html.TextBoxFor(a => a.UserName, new { @class = "form-control" })
+                @Html.HiddenFor(a => a.UserId)
+            </div>
+            <div class="form-group col-lg-offset-6">
+                <label for="ContactPerson">Нууц үг</label>
+                @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-lg-offset-6">
+                <label for="Email">Нууц үг дахин</label>
+                @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-lg-offset-6">
+                <label for="Phone">Мэйл хаяг</label>
+                @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group col-lg-offset-6">
+                <button class="btn btn-primary" type="submit">Бүртгүүлэх</button>
+            </div>
+        </div>
+
+    </div>
+}
+
