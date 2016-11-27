@@ -11,14 +11,16 @@
     <div class="col-sm-8">
 
         <div class="row">
-            <h3 class="form-group col-lg-offset-6">Хэрэглэгч бүртгүүлэх</h3>
             <div class="form-group col-lg-offset-6">
-                @if(ViewBag.Message!=null&&ViewBag.Message!=" ") { 
-                <label class="alert alert-success col-lg-offset-6">@ViewBag.Message</label>}
+                @if (ViewBag.Message != null && ViewBag.Message != " ")
+                {
+                    <label class="alert alert-success">@ViewBag.Message</label>}
                 @if (ViewBag.ErrorMessage != null && ViewBag.ErrorMessage != " ")
                 {
-                    <label class="alert alert-danger col-lg-offset-6">@ViewBag.ErrorMessage</label>}
+                    <label class="alert alert-danger">@ViewBag.ErrorMessage</label>}
             </div>
+            <h3 class="form-group col-lg-offset-6">Хэрэглэгч бүртгүүлэх</h3>
+            
             <div class="form-group col-lg-offset-6">
                 <label for="CompanyName">Хэрэглэгчийн Нэр</label>
                 @Html.TextBoxFor(a => a.UserName, new { @class = "form-control" })

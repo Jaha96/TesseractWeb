@@ -39,7 +39,7 @@ namespace TesseractWeb.Controllers
                 ViewBag.Message = "Хэрэглэгч амжилттай бүртгэгдлээ";
             }
             else {
-                ViewBag.ErrorMessage = "Хэрэглэгчийн бүртгэл амжилтгүй боллоо";
+                ViewBag.ErrorMessage = ret;
             }
             
             return View();

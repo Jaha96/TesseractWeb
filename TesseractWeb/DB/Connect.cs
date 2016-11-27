@@ -21,7 +21,7 @@ namespace TesseractWeb.DB
             //SQL комманд гүйцэтгэх обьектыг дээрх холбоосоос үүсгэж байна.
             IDbCommand cmd = conn.CreateCommand();
             //Коммандыг зааж өгж байна
-            cmd.CommandText = "SELECT * FROM Sailor where sailorId=@Name AND password=@Password ";
+            cmd.CommandText = "SELECT * FROM UserTable where email=@Name AND password=@Password ";
             cmd.Parameters.Add(new SqlParameter("@Name", Name));
             cmd.Parameters.Add(new SqlParameter("@Password", Password));
             //Com.Parameters.Add(new SqlParameter("@ProductID", ProductID));
@@ -53,7 +53,7 @@ namespace TesseractWeb.DB
                 string dsn = (string)ConfigurationManager.AppSettings["dsn"];
                 SqlConnection conn = new SqlConnection(dsn);
                 //Коммандын төрлийг сонгох тохиолдолд дараах байдлаар үүсгэнэ.
-                SqlCommand cmd = new SqlCommand("AddCompany", conn);
+                SqlCommand cmd = new SqlCommand("AddCustomer", conn);
                 //Коммандын төрөл профедур болохыг зааж байна
                 cmd.CommandType = CommandType.StoredProcedure;
                 //Уг процедурыг дуудахад дараах параметрүүдийг дамжуулна
@@ -77,14 +77,14 @@ namespace TesseractWeb.DB
                 {
                     conn.Dispose();
                 }
-                return "Хэрэглэгч амжилттай нэмэгдлээ";
+                return "1";
             }
-            public string CompanyUpdate(UserModel UM)
+            public string UserUpdate(UserModel UM)
             {
                 string dsn = (string)ConfigurationManager.AppSettings["dsn"];
                 SqlConnection conn = new SqlConnection(dsn);
                 //Коммандын төрлийг сонгох тохиолдолд дараах байдлаар үүсгэнэ.
-                SqlCommand cmd = new SqlCommand("UpdateCompany", conn);
+                SqlCommand cmd = new SqlCommand("UpdateCustomer", conn);
                 //Коммандын төрөл профедур болохыг зааж байна
                 cmd.CommandType = CommandType.StoredProcedure;
                 //Уг процедурыг дуудахад дараах параметрүүдийг дамжуулна
@@ -107,12 +107,12 @@ namespace TesseractWeb.DB
                 }
                 return "1";
             }
-            public string CompanyDelete(int id)
+            public string UserDelete(int id)
             {
                 string dsn = (string)ConfigurationManager.AppSettings["dsn"];
                 SqlConnection conn = new SqlConnection(dsn);
                 //Коммандын төрлийг сонгох тохиолдолд дараах байдлаар үүсгэнэ.
-                SqlCommand cmd = new SqlCommand("DeleteCompany", conn);
+                SqlCommand cmd = new SqlCommand("DeleteCustomer", conn);
                 //Коммандын төрөл профедур болохыг зааж байна
                 cmd.CommandType = CommandType.StoredProcedure;
                 //Уг процедурыг дуудахад дараах параметрүүдийг дамжуулна
