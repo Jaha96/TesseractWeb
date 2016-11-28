@@ -11,15 +11,15 @@
             <table class="table table-condensed">
                 <tr>
                     <td>Нийт ачаалсан зургын тоо</td>
-                    <td>0</td>
+                    <td>@Model.Count</td>
                 </tr>
                 <tr>
                     <td>Нийт илрүүлэлт хийгдсэн файлын тоо</td>
-                    <td>0</td>
+                    <td>@Model.Count</td>
                 </tr>
                 <tr>
                     <td>Системд нэвтэрсэн тоо</td>
-                    <td>0</td>
+                    <td>@Model[0]["LoginCount"]</td>
                 </tr>
              </table>
         </div>
@@ -39,12 +39,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for(int i=0;i<10;i++)
+                    @for(int i = 0; i < Model.Count; i++)
                     { 
                     <tr>
-                        <td><a href="#">John @i</a></td>
-                        <td><a href="#">Doe @i</a></td>
-                        <td>2016.11.09</td>
+                        <td><a href="~/UserImages/@Model[i].ItemArray[1]">@Model[i].ItemArray[1]</a></td>
+                        <td><a href="~/UserOutputs/@Model[i].ItemArray[2]">@Model[i].ItemArray[2]</a></td>
+                        <td>@Model[i].ItemArray[3]</td>
                         <td><a href="#"><span class="glyphicon glyphicon-trash"></span></a> </td>
                     </tr>
                     }

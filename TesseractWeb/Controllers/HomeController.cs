@@ -15,6 +15,8 @@ namespace TesseractWeb.Controllers
     public class HomeController : Controller
     {
         Connect cn = new Connect();
+        FileModel FM = new FileModel();
+        UserModel UM = new UserModel();
         public ActionResult Login()
         {
             return View();
@@ -23,12 +25,13 @@ namespace TesseractWeb.Controllers
         public ActionResult Login(UserModel UM)
         {
             string ret = cn.UserConnect(UM.Email, UM.Password);
-            if (ret != "1") {
+            if (ret == "Error") {
                 ViewBag.ErrorMessage = "Нууц үг эсвэл нэвтрэх нэр буруу байна!";
                 return View();
             }
             FormsAuthentication.SetAuthCookie(UM.Email, UM.RememberMe);
-            Session["Customer"] = UM;
+            HttpContext.Items["UserId"] = ret;
+            Session["UserId"] = ret;
             return RedirectToAction("FileHistory", "User");
         }
         public ActionResult Register()
@@ -82,16 +85,25 @@ namespace TesseractWeb.Controllers
                 {
                     Directory.CreateDirectory(path);
                 }
-
-                postedFile.SaveAs(path + Path.GetFileName(postedFile.FileName));
+                FM.inputFile = postedFile.FileName;
+                if (Request.IsAuthenticated) { postedFile.SaveAs(path + Path.GetFileName(postedFile.FileName)); }
                 ViewBag.Message = "Файл илрүүлэлт амжилттай боллоо!";
             }
-            switch (format) {
-                case "1": Write2Word(postedFile, ViewBag.Text); break;
-                case "2": Write2Word(postedFile, ViewBag.Text); break;
-                case "3": createText(postedFile, ViewBag.Text); break;
+            if (Request.IsAuthenticated) { 
+                switch (format) {
+                    case "1": Write2Word(postedFile, ViewBag.Text); break;
+                    case "2": Write2Word(postedFile, ViewBag.Text); break;
+                    case "3": createText(postedFile, ViewBag.Text); break;
+                }
             }
+            
             langList();
+            if (Request.IsAuthenticated)
+            {
+                FM.date = DateTime.Now;
+                FM.userId = cn.getUserIdByEmail(HttpContext.User.Identity.Name);
+                cn.FileHistoryAdd(FM);
+            }
             return View(true);
         }
 
@@ -106,6 +118,7 @@ namespace TesseractWeb.Controllers
                 Directory.CreateDirectory(Docpath);
             }
             var doc = DocX.Create(Docpath+fileName+".docx");
+            FM.outputFile = fileName + ".docx";
             doc.InsertParagraph(text);
             doc.Save();
         }
@@ -141,6 +154,7 @@ namespace TesseractWeb.Controllers
                 Directory.CreateDirectory(Docpath);
             }
             System.IO.File.WriteAllText(Docpath + fileName+".txt", text);
+            FM.outputFile = fileName + ".txt";
         }
         public void langList()
         {
