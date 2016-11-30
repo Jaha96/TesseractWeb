@@ -272,6 +272,26 @@ namespace TesseractWeb.DB
             }
             return ds;
         }
+        public DataTable UserDatatable(int userId)
+        {
+            DataTable ds = new DataTable();
+            using (SqlConnection Con = new SqlConnection(ConfigurationManager.AppSettings["dsn"]))
+            {
+                //string SQL = "select * from products where id = @ProductID";
+                string SQL = @"Select * from UserTable where UserId=@id";
+                Con.Open();
+                using (SqlCommand Com = new SqlCommand(SQL, Con))
+                {
+                    Com.Parameters.Add(new SqlParameter("@id", userId));
+                    using (SqlDataAdapter adap = new SqlDataAdapter(Com))
+                    {
+                        adap.Fill(ds);
+                    }
+                }
+                Con.Dispose();
+            }
+            return ds;
+        }
         public int getUserIdByEmail(string email)
         {
             DataTable dt = new DataTable();

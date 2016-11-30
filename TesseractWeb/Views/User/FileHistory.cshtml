@@ -23,12 +23,23 @@
                 </tr>
              </table>
         </div>
-        <div class="panel-footer"><a href="#" class="btn btn-info" role="button">Илрүүлэлт хийх</a></div>
+        <div class="panel-footer"><a href="@Url.Action("Index","Home")" class="btn btn-info" role="button">Илрүүлэлт хийх</a></div>
     </div>
     <div class="panel panel-default col-lg-offset-1">
         <div class="panel-heading"><h2>Файлын түүх</h2></div>
         <div class="panel-body">
-
+            @if (ViewBag.ErrorMessage != " " && ViewBag.ErrorMessage != null)
+            {
+            <div class="alert alert-danger">
+                <strong>Алдаа </strong> @ViewBag.ErrorMessage
+            </div>
+            }
+            @if (ViewBag.Message != " " && ViewBag.Message != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Амжилттай  </strong> @ViewBag.Message
+                </div>
+            }
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -42,10 +53,10 @@
                     @for(int i = 0; i < Model.Count; i++)
                     { 
                     <tr>
-                        <td><a href="~/UserImages/@Model[i].ItemArray[1]">@Model[i].ItemArray[1]</a></td>
-                        <td><a href="~/UserOutputs/@Model[i].ItemArray[2]">@Model[i].ItemArray[2]</a></td>
-                        <td>@Model[i].ItemArray[3]</td>
-                        <td><a href="#"><span class="glyphicon glyphicon-trash"></span></a> </td>
+                        <td><a href="@Url.Action("Download",new { type="doc",name=Model[i].ItemArray[1] })">@Model[i].ItemArray[1]</a></td>
+                        <td><a href="@Url.Action("Download",new { type="image",name=Model[i].ItemArray[2] })">@Model[i].ItemArray[2]</a></td>
+                        <td>@Model[i].ItemArray[3].ToString("yyyy-MM-dd")</td>
+                        <td><a href="@Url.Action("Delete",new { HistoryId=Model[i]["HistoryId"] })"><span class="glyphicon glyphicon-trash"></span></a> </td>
                     </tr>
                     }
                 </tbody>

@@ -1,0 +1,52 @@
+﻿@model TesseractWeb.Models.UserModel
+@{
+    ViewBag.Title = "Хэрэглэгчийн тохиргоо";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<hr class="featurette-divider">
+@using (Html.BeginForm())
+{
+
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="panel panel-info col-lg-offset-6">
+                <div class="panel-heading">Тохиргооны хуудас</div>
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        @if (ViewBag.Message != null && ViewBag.Message != " ")
+                {
+                            <div class="alert alert-success">@ViewBag.Message</div>}
+                        @if (ViewBag.ErrorMessage != null && ViewBag.ErrorMessage != " ")
+                {
+                            <div class="alert alert-danger">@ViewBag.ErrorMessage</div>}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CompanyName">Хэрэглэгчийн Нэр</label>
+                        @Html.TextBoxFor(a => a.UserName, new { @class = "form-control" })
+                        @Html.HiddenFor(a => a.UserId)
+                    </div>
+                    <div class="form-group">
+                        <label for="ContactPerson">Нууц үг</label>
+                        @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Нууц үг дахин</label>
+                        @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Phone">Мэйл хаяг</label>
+                        @Html.TextBoxFor(a => a.Email, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-info" type="submit">Өөрчлөлт хийх</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

@@ -36,12 +36,12 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Index","Home")">Нүүр</a></li>
-                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Login" ? "active" : "")"><a href="@Url.Action("FileHistory","User")">Архив</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "FileHistory" ? "active" : "")"><a href="@Url.Action("FileHistory","User")">Архив</a></li>
                         </ul>
                         <p class="navbar-text navbar-nav navbar-right"></p>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span>  @HttpContext.Current.User.Identity.Name</a></li>
-                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Register" ? "active" : "")"><a href="@Url.Action("Profile","User")"><span class="glyphicon glyphicon-cog"></span> Тохиргоо</a></li>
+                            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "active" : "")"><a href="@Url.Action("Profile","User")"><span class="glyphicon glyphicon-cog"></span> Тохиргоо</a></li>
                             <li><a href="@Url.Action("Logout","User")"><span class="glyphicon glyphicon-log-in"></span> Гарах</a></li>
                         </ul>
                         
