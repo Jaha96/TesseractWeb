@@ -26,15 +26,18 @@
                     <div class="form-group">
                         <label for="CompanyName">Хэрэглэгчийн Нэр</label>
                         @Html.TextBoxFor(a => a.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.UserName, "", new { @class = "alert-danger" })
                         @Html.HiddenFor(a => a.UserId)
                     </div>
                     <div class="form-group">
                         <label for="ContactPerson">Нууц үг</label>
                         @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.Password, "", new { @class = "alert-danger" })
                     </div>
                     <div class="form-group">
                         <label for="Email">Нууц үг дахин</label>
-                        @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+                        @Html.PasswordFor(a => a.ConfirmPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.ConfirmPassword, "", new { @class = "alert-danger" })
                     </div>
                     <div class="form-group">
                         <label for="Phone">Мэйл хаяг</label>

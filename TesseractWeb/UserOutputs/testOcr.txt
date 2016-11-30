@@ -1,0 +1,7 @@
+UR Dob is 12/14/6789
+Solid,Liquid,gas.
+
+PIN :— 567991
+
+Special Chars: ~!@#$%"& (:
+

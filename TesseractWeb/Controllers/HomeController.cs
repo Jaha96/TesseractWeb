@@ -41,13 +41,13 @@ namespace TesseractWeb.Controllers
         [HttpPost]
         public ActionResult Register(UserModel UM) // Calling on http post (on Submit)
         {
-            string ret= cn.UserAdd(UM);
-            if (ret == "1") {
-                ViewBag.Message = "Хэрэглэгч амжилттай бүртгэгдлээ";
-            }
-            else {
-                ViewBag.ErrorMessage = ret;
-            }
+                string ret= cn.UserAdd(UM);
+                if (ret == "1") {
+                    ViewBag.Message = "Хэрэглэгч амжилттай бүртгэгдлээ";
+                }
+                else {
+                    ViewBag.ErrorMessage = ret;
+                }
             
             return View();
         }

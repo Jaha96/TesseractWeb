@@ -53,7 +53,9 @@ namespace TesseractWeb.Controllers
         public ActionResult FileHistory()
         {
             Connect cn = new Connect();
-            return View(cn.CompanyDatatable(cn.getUserIdByEmail(HttpContext.User.Identity.Name)).Rows);
+            DataTable dt = cn.CompanyDatatable(cn.getUserIdByEmail(HttpContext.User.Identity.Name));
+
+            return View(dt.Rows);
         }
         [Authorize]
         public ActionResult Profile()
