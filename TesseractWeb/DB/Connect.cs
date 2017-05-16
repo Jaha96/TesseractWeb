@@ -258,7 +258,7 @@ namespace TesseractWeb.DB
                 //string SQL = "select * from products where id = @ProductID";
                 string SQL = @"select * from FileHistory f
                         left join UserTable u on f.UserId=u.UserId
-                        where f.Userid=@id";
+                        where f.Userid=@id order by Date desc";
                 Con.Open();
                 using (SqlCommand Com = new SqlCommand(SQL, Con))
                 {

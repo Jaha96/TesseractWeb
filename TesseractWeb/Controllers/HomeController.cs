@@ -37,7 +37,9 @@ namespace TesseractWeb.Controllers
         }
         public ActionResult Register()
         {
-            return View();
+            UserModel UM = new UserModel();
+            UM.UserId = 5;
+            return View(UM);
         }
         [HttpPost]
         public ActionResult Register(UserModel UM) // Calling on http post (on Submit)
@@ -165,7 +167,7 @@ namespace TesseractWeb.Controllers
             foreach (FileInfo file in Files)
             {
                 string[] val = file.Name.ToString().Split('.');
-                items.Add(new SelectListItem { Text = file.Name, Value = val[0] });
+                items.Add(new SelectListItem { Text = val[0], Value = val[0] });
             }
             ViewBag.LangList = items.ToArray();
         }
